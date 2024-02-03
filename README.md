@@ -1,4 +1,4 @@
-# house_sales_dashboard
+# House sales dashboard
  
 ## Presentation
 We present to you a simple dashboard for a real estate data of house saling.
