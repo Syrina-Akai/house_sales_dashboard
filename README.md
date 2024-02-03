@@ -9,10 +9,10 @@ It allows users to explore The purpose is to provide an interactive and visual w
 Use these commands to install the dependencies on a virtual environment.
 
 ```bash
-python3 -m venv venve
+py -m venv venve
 ```
 ```bash
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ##  How to run ? 
