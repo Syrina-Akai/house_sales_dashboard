@@ -1,6 +1,6 @@
 # house_sales_dashboard
  
-## Abstract
+## Presentation
 We present to you a simple dashboard for a real estate data of house saling.
 It allows users to explore The purpose is to provide an interactive and visual way to explore the dataset, identify trends, patterns The dashboard is built using Python.
 
