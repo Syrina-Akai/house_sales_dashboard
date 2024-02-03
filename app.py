@@ -66,6 +66,6 @@ if selected == 'About':
     st.title('About the project')
     st.write('This is a simple dashboard to analyse house sales data')
     st.write('It is made using streamlit and plotly')
-    st.write('The link to the github repository is: https://github.com/siddharthbhansali/HouseSalesAnalysis')
+    st.write('The link to the github repository is: https://github.com/Syrina-Akai/house_sales_dashboard')
 
 
