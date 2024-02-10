@@ -58,7 +58,7 @@ def about_page():
     # add a link to the github repository
     st.markdown("""
                 **Github repository**\n
-                The link to the github repository is: [House sales dashboard](https://github.com/Syrina-Akai/house_sales_dashboard)\
+                The link to the github repository is: [![GithubRepo](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Syrina-Akai/house_sales_dashboard)\
                 """)
     # add contact me buttons with linkdin and mail 
     st.markdown("""
