@@ -1,4 +1,13 @@
+import os
+import sys
 import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+import pickle
+
+# get the path of the father of the current folder
+CURRENT_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 
 # handle price
 def clean_price(df):
@@ -64,3 +73,53 @@ def clean_data(df):
     df = df.drop_duplicates()
 
     return df
+
+
+def split_data(df):
+    target = 'Mortgage'
+    X = df.drop(target, axis=1)
+    y = df[target]
+    # Splitting the data into training and testing sets
+    return train_test_split(X, y, test_size=0.3, random_state=123)
+
+def get_split_data():
+    X_train = pd.read_csv(f"{CURRENT_FOLDER}\\data\\X_train.csv")
+    X_test = pd.read_csv(f"{CURRENT_FOLDER}\\data\\X_test.csv")
+    y_train = pd.read_csv(f"{CURRENT_FOLDER}\\data\\y_train.csv")
+    y_test = pd.read_csv(f"{CURRENT_FOLDER}\\data\\y_test.csv")
+    return X_train, X_test, y_train, y_test
+
+def get_models(model):
+    if model == 'Logistic Regression':
+        return pickle.load(open(f"{CURRENT_FOLDER}\\saved_models\\LogisticRegression.pkl",'rb'))
+    elif model == 'Random Forest':
+        return pickle.load(open(f"{CURRENT_FOLDER}\\saved_models\\RandomForestClassifier.pkl",'rb'))
+
+def get_metrics(model):
+    _, X_test, _, y_test = get_split_data()
+    model = get_models(model)
+    y_pred = model.predict(X_test)
+
+    # return metrics as a df
+    accuracy = metrics.accuracy_score(y_test, y_pred)
+    precision = metrics.precision_score(y_test, y_pred)
+    recall = metrics.recall_score(y_test, y_pred)
+    f1 = metrics.f1_score(y_test, y_pred)
+    return pd.DataFrame({'Accuracy': [accuracy], 'Precision': [precision], 'Recall': [recall], 'F1': [f1]})
+
+def get_roc_curve(model):
+    _, X_test, _, y_test = get_split_data()
+    model = get_models(model)
+    # return the roc curve as a figure
+    y_pred_proba = model.predict_proba(X_test)[:,1]
+    fpr, tpr, thresholds = metrics.roc_curve(y_test, y_pred_proba)
+    return fpr, tpr, thresholds, metrics.roc_auc_score(y_test, y_pred_proba)
+
+
+def get_confusion_matrix(model):
+    _, X_test, _, y_test = get_split_data()
+    model = get_models(model)
+    # return the confusion matrix as a figure
+    y_pred = model.predict(X_test)
+    cm = metrics.confusion_matrix(y_test, y_pred)
+    return cm
