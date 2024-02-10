@@ -94,22 +94,22 @@ def about_page():
                  [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Syrina-Akai)
                 """)
     
-
-# add a menu on the left side
-with st.sidebar:
-    selected = option_menu("Main Menu", ["Home", 'Analyse', 'Data Science', 'About'], 
-        icons=['house', 'clipboard2-pulse', 'clipboard2-data', 'info-circle'], menu_icon="cast", default_index=0)
     
-if selected == 'Home':
-    home_page()
-if selected == 'Analyse':
-    analyse_page()
+if __name__ == '__main__' :
+    # add a menu on the left side
+    with st.sidebar:
+        selected = option_menu("Main Menu", ["Home", 'Analyse', 'Data Science', 'About'], 
+            icons=['house', 'clipboard2-pulse', 'clipboard2-data', 'info-circle'], menu_icon="cast", default_index=0)
+        
+    if selected == 'Home':
+        home_page()
+    if selected == 'Analyse':
+        analyse_page()
 
-if selected == 'Data Science':
-    datascience_page()
+    if selected == 'Data Science':
+        datascience_page()
 
-if selected == 'About':
-    about_page()
-    
+    if selected == 'About':
+        about_page()
 
 
