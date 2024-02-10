@@ -42,9 +42,6 @@ class Plot:
 
 
     def get_plot(self, plot_name, x = None, y = None):
-        print("WE GOT THE X AND Y", x, y)
-        # x = self.df.columns[x] if x else None
-        # y = self.df.columns[y] if y else None
         if plot_name == "quantitatif_qualitatif_pie":
             return self.plot_pie()
         

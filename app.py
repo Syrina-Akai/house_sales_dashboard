@@ -42,15 +42,30 @@ def analyse_page():
         # make 2 input to choose a column and a plot
         column_x = st.selectbox('Choose a column for X', sorted(set(plot.df.columns)))
         column_y = st.selectbox('Choose a column for Y', sorted(list(set(plot.df.columns) - {column_x})))
-        plot_name = st.selectbox('Choose a plot', ["scatter", "line", "bar"])
+        plot_name = st.radio("Choose a plot", ("scatter", "line", "bar"), horizontal=True)
     with col2:
         # plot the selected plot
         fig = plot.get_plot(plot_name, column_x, column_y)
         st.write(fig)
 
-# column_x = st.selectbox('Choose a column for X', DATA.columns, index=DATA.columns.get_loc(default_column) if default_column in DATA.columns else 0)
-
-
+def about_page():
+    st.title('About us')
+    # Our mission is to make a simple and awesome dashboard for data analysis
+    st.markdown("""
+                **FLICI Syrine** an algerian data enthousiast.\nI mainly work on data analysis and data mining.\
+             \nThis dashboard is a simple and awesome example of how I usually present my work.
+                """)
+    # add a link to the github repository
+    st.markdown("""
+                **Github repository**\n
+                The link to the github repository is: [House sales dashboard](https://github.com/Syrina-Akai/house_sales_dashboard)\
+                """)
+    # add contact me buttons with linkdin and mail 
+    st.markdown("""
+                **Contact me**\n
+                 [![Linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/syrine-mahdia-flici-6b8774201/)
+                 [![Mail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:syrine.flici@gmail.com)
+                """)
 
 # add a menu on the left side
 with st.sidebar:
@@ -63,9 +78,7 @@ if selected == 'Analyse':
     analyse_page()
 
 if selected == 'About':
-    st.title('About the project')
-    st.write('This is a simple dashboard to analyse house sales data')
-    st.write('It is made using streamlit and plotly')
-    st.write('The link to the github repository is: https://github.com/Syrina-Akai/house_sales_dashboard')
+    about_page()
+    
 
 
